@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f7f4ec">
     <title>Freya Music Buttons</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -15,6 +16,15 @@
         <span class="stop-icon" aria-hidden="true"></span>
         <span>Stop</span>
       </button>
+
+      <section class="setup-panel" id="setupPanel" aria-label="Caregiver setup" hidden>
+        <label class="file-picker">
+          <span>Private audio for purple button</span>
+          <input id="localAudioInput" type="file" accept="audio/*">
+        </label>
+        <button class="setup-action" id="clearLocalAudio" type="button">Use demo purple sound</button>
+        <p class="setup-status" id="setupStatus" aria-live="polite"></p>
+      </section>
     </main>
 
     <script src="app.js" defer></script>

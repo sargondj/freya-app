@@ -6,15 +6,31 @@ A small static GitHub Pages app built as an accessible cause-and-effect music in
 
 - `index.html` contains the app shell.
 - `styles.css` defines the large touch targets and responsive layout.
-- `app.js` contains the obvious `SOUND_BUTTONS` configuration section for labels, colors, symbols, and audio filenames.
+- `app.js` contains the obvious `SOUND_BUTTONS` configuration section for labels, colors, shapes, and audio filenames.
+- `favicon.svg` is a four-color app icon using the button colors.
 - `audio/` contains original generated demo WAV files for public use.
 - `tools/generate_demo_audio.py` recreates the demo audio files.
 
-## Changing Sounds
+## Changing Public Demo Sounds
 
-Replace files in `audio/`, then update the `file` values in `app.js`.
+Replace files in `audio/`, then update the `file` values in `app.js`. Only put files in this public repository when you have the right to distribute them publicly.
 
-Do not commit copyrighted commercial recordings, such as an MP3 of "Royals" by Lorde, to a public GitHub Pages repository unless you have distribution rights. For copyrighted favorites, use a legal private/local supply path or an authorized streaming/embed mechanism that remains simple enough for Freya's interface.
+## Private Audio For The Purple Button
+
+The purple button can use a copyrighted or privately owned audio file without adding that file to GitHub. The file is selected on each phone or tablet and saved only inside that browser's private local storage. It is not uploaded by the app and it is not committed to the repository.
+
+To set it up on a device:
+
+1. Put the audio file somewhere the device's browser can pick it from. On iPhone, save it in the Files app, such as On My iPhone or iCloud Drive. On Android, save it in Files/Downloads/Drive or another file-provider location.
+2. Open the app with `?setup=1` at the end of the URL. Example: `https://sargondj.github.io/freya-app/?setup=1`.
+3. Tap `Private audio for purple button`, choose the audio file, and wait for the status message.
+4. Open the normal app URL again without `?setup=1` for Freya's regular four-button screen.
+
+Notes:
+
+- MP3, M4A, AAC, and WAV are the safest formats across iPhone Safari and Android Chrome.
+- Apple Music, Spotify, YouTube Music, and other streaming/DRM tracks usually cannot be selected as plain audio files. Use an audio file that the browser can access through the system file picker.
+- This has to be configured separately on each device and browser. Clearing browser site data will remove the private audio selection.
 
 ## GitHub Pages
 
