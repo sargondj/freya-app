@@ -195,10 +195,11 @@ localAudioInput.addEventListener("change", async () => {
   }
 
   try {
+    await confirmPlayableAudio(file);
     await saveLocalAudioRecord(file);
     useLocalAudioBlob(file, file.name);
   } catch (error) {
-    updateSetupStatus("This browser could not save that audio file. Try a smaller MP3, M4A, AAC, or WAV file.");
+    updateSetupStatus(error.message || "This browser could not save that audio file. Try a smaller MP3, M4A, AAC, or WAV file.");
   }
 });
 
@@ -218,6 +219,25 @@ clearLocalAudioButton.addEventListener("click", async () => {
     updateSetupStatus("Purple button is using the demo sound.");
   }
 });
+
+function confirmPlayableAudio(file) {
+  return new Promise((resolve, reject) => {
+    const testUrl = URL.createObjectURL(file);
+    const audio = new Audio();
+    const cleanup = () => URL.revokeObjectURL(testUrl);
+
+    audio.preload = "metadata";
+    audio.onloadedmetadata = () => {
+      cleanup();
+      resolve();
+    };
+    audio.onerror = () => {
+      cleanup();
+      reject(new Error("This browser could not read that audio file. Try MP3, M4A, AAC, or WAV."));
+    };
+    audio.src = testUrl;
+  });
+}
 
 function updateSetupStatus(message) {
   if (setupStatus) {

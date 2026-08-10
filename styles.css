@@ -171,6 +171,18 @@ button {
   font: inherit;
 }
 
+.setup-link {
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  border-radius: 8px;
+  background: #8f4fd1;
+  color: #fff;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+}
+
 .setup-action {
   min-height: 44px;
   border-radius: 8px;
@@ -186,22 +198,12 @@ button {
 
 @media (orientation: landscape) and (max-height: 640px) {
   .app {
-    grid-template-columns: 1fr minmax(108px, 16vw);
-    grid-template-rows: minmax(0, 1fr) auto;
-  }
-
-  .button-grid {
-    grid-row: 1 / 3;
-  }
-
-  .stop-button {
-    grid-template-columns: 1fr;
-    align-content: center;
-    min-height: 100%;
+    max-width: min(100vw, 430px);
+    margin: 0 auto;
   }
 
   .setup-panel {
-    max-height: 45vh;
+    max-height: 38vh;
     overflow: auto;
   }
 }

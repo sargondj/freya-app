@@ -24,13 +24,14 @@ To set it up on a device:
 1. Put the audio file somewhere the device's browser can pick it from. On iPhone, save it in the Files app, such as On My iPhone or iCloud Drive. On Android, save it in Files/Downloads/Drive or another file-provider location.
 2. Open the app with `?setup=1` at the end of the URL. Example: `https://sargondj.github.io/freya-app/?setup=1`.
 3. Tap `Private audio for purple button`, choose the audio file, and wait for the status message.
-4. Open the normal app URL again without `?setup=1` for Freya's regular four-button screen.
+4. Use the `Open Freya buttons` link, or open the normal app URL again without `?setup=1`, for Freya's regular four-button screen.
 
 Notes:
 
-- MP3, M4A, AAC, and WAV are the safest formats across iPhone Safari and Android Chrome.
+- MP3, M4A, AAC, and WAV are the safest formats across iPhone Safari and Android Chrome. The file picker explicitly allows `.mp3` because some mobile file providers do not advertise MP3 files as `audio/*`.
 - Apple Music, Spotify, YouTube Music, and other streaming/DRM tracks usually cannot be selected as plain audio files. Use an audio file that the browser can access through the system file picker.
 - This has to be configured separately on each device and browser. Clearing browser site data will remove the private audio selection.
+- Browser pages cannot reliably force portrait orientation on iPhone and Android. The app keeps the same portrait-style button layout in landscape instead of switching to a side-by-side layout.
 
 ## GitHub Pages
 
