@@ -49,9 +49,36 @@ def blue_chime(t: float, _index: int, _total: int) -> float:
     return 0.44 * sine(note, t) + 0.18 * sine(note * 2, t)
 
 
-def green_pulse(t: float, _index: int, _total: int) -> float:
-    pulse = 0.55 if (t % 0.72) < 0.36 else 0.18
-    return pulse * (0.58 * sine(261.63, t) + 0.26 * sine(329.63, t))
+def green_wind_chimes(t: float, _index: int, _total: int) -> float:
+    strikes = [
+        (0.10, 523.25, 0.36, 3.3),
+        (0.55, 659.25, 0.31, 3.8),
+        (1.05, 783.99, 0.27, 4.1),
+        (1.55, 587.33, 0.30, 3.5),
+        (2.15, 698.46, 0.29, 4.4),
+        (2.95, 880.00, 0.22, 4.7),
+        (3.85, 493.88, 0.25, 3.9),
+        (4.55, 739.99, 0.21, 4.5),
+        (5.45, 622.25, 0.23, 4.0),
+        (6.30, 830.61, 0.18, 4.8),
+    ]
+
+    value = 0.0
+    for start, freq, amp, decay in strikes:
+        elapsed = t - start
+        if elapsed < 0:
+            continue
+
+        ring = math.exp(-elapsed / decay)
+        sway = 0.98 + 0.02 * sine(0.18, t)
+        value += amp * ring * (
+            0.70 * sine(freq * sway, t)
+            + 0.20 * sine(freq * 2.01, t)
+            + 0.10 * sine(freq * 3.02, t)
+        )
+
+    wind = 0.018 * sine(0.09, t) + 0.012 * math.sin(2 * math.pi * 0.13 * t + 1.3)
+    return value + wind
 
 
 def yellow_warm(t: float, _index: int, _total: int) -> float:
@@ -67,7 +94,7 @@ def pink_sparkle(t: float, _index: int, _total: int) -> float:
 
 def main() -> None:
     write_wav("blue-chime.wav", 6.0, blue_chime)
-    write_wav("green-pulse.wav", 6.0, green_pulse)
+    write_wav("green-wind-chimes.wav", 9.5, green_wind_chimes)
     write_wav("yellow-warm.wav", 6.0, yellow_warm)
     write_wav("pink-sparkle.wav", 6.0, pink_sparkle)
 

@@ -20,7 +20,7 @@ const SOUND_BUTTONS = [
     label: "Green music",
     shape: "square",
     color: "#148f5a",
-    file: "audio/green-pulse.wav",
+    file: "audio/green-wind-chimes.wav",
   },
   {
     id: "yellow-diamond",
@@ -56,6 +56,7 @@ let currentAudio = null;
 let currentButton = null;
 let localAudioObjectUrl = null;
 let localAudioName = "";
+let orientationLockRequested = false;
 
 function buildButtons() {
   SOUND_BUTTONS.forEach((choice) => {
@@ -70,6 +71,7 @@ function buildButtons() {
     button.addEventListener("pointerdown", (event) => {
       event.preventDefault();
       showPressed(button);
+      requestPortraitLock();
       playChoice(choice, button);
     });
     button.addEventListener("pointerup", () => clearPressed(button));
@@ -78,6 +80,7 @@ function buildButtons() {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         showPressed(button);
+        requestPortraitLock();
         playChoice(choice, button);
       }
     });
@@ -146,6 +149,17 @@ function showPressed(button) {
 
 function clearPressed(button) {
   button.classList.remove("is-pressed");
+}
+
+function requestPortraitLock() {
+  if (orientationLockRequested || !screen.orientation?.lock) {
+    return;
+  }
+
+  orientationLockRequested = true;
+  screen.orientation.lock("portrait-primary").catch(() => {
+    // Many mobile browsers reject orientation locking in normal tabs.
+  });
 }
 
 function setupModeEnabled() {
@@ -298,6 +312,7 @@ function runLocalAudioTransaction(db, mode, action) {
 stopButton.addEventListener("pointerdown", (event) => {
   event.preventDefault();
   showPressed(stopButton);
+  requestPortraitLock();
   stopPlayback();
 });
 stopButton.addEventListener("pointerup", () => {
@@ -308,6 +323,7 @@ stopButton.addEventListener("keydown", (event) => {
   if (event.key === "Enter" || event.key === " ") {
     event.preventDefault();
     showPressed(stopButton);
+    requestPortraitLock();
     stopPlayback();
   }
 });

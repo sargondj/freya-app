@@ -7,6 +7,7 @@ A small static GitHub Pages app built as an accessible cause-and-effect music in
 - `index.html` contains the app shell.
 - `styles.css` defines the large touch targets and responsive layout.
 - `app.js` contains the obvious `SOUND_BUTTONS` configuration section for labels, colors, shapes, and audio filenames.
+- `manifest.webmanifest` asks supported installed web-app surfaces to keep the app portrait-oriented.
 - `favicon.svg` is a four-color app icon using the button colors.
 - `audio/` contains original generated demo WAV files for public use.
 - `tools/generate_demo_audio.py` recreates the demo audio files.
@@ -31,7 +32,7 @@ Notes:
 - MP3, M4A, AAC, and WAV are the safest formats across iPhone Safari and Android Chrome. The file picker explicitly allows `.mp3` because some mobile file providers do not advertise MP3 files as `audio/*`.
 - Apple Music, Spotify, YouTube Music, and other streaming/DRM tracks usually cannot be selected as plain audio files. Use an audio file that the browser can access through the system file picker.
 - This has to be configured separately on each device and browser. Clearing browser site data will remove the private audio selection.
-- Browser pages cannot reliably force portrait orientation on iPhone and Android. The app keeps the same portrait-style button layout in landscape instead of switching to a side-by-side layout.
+- Browser pages cannot reliably force portrait orientation on iPhone and Android. The app requests portrait orientation in its web-app manifest and tries the Screen Orientation API after a tap, but unsupported browsers quietly ignore those requests. Installing the page to the home screen gives the browser the best chance of honoring portrait orientation.
 
 ## GitHub Pages
 
