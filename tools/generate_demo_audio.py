@@ -43,10 +43,31 @@ def sine(freq: float, t: float) -> float:
     return math.sin(2 * math.pi * freq * t)
 
 
-def blue_chime(t: float, _index: int, _total: int) -> float:
-    notes = [392.0, 523.25, 659.25, 783.99]
-    note = notes[int((t * 2.2) % len(notes))]
-    return 0.44 * sine(note, t) + 0.18 * sine(note * 2, t)
+def blue_whale(t: float, _index: int, _total: int) -> float:
+    phrases = [
+        (0.15, 120.0, 58.0, 2.5, 0.46),
+        (2.75, 96.0, 48.0, 2.8, 0.40),
+        (5.70, 132.0, 64.0, 2.4, 0.34),
+    ]
+
+    value = 0.0
+    for start, high, low, length, amp in phrases:
+        elapsed = t - start
+        if elapsed < 0 or elapsed > length:
+            continue
+
+        progress = elapsed / length
+        freq = high + (low - high) * progress
+        pulse = 0.72 + 0.28 * sine(4.2, elapsed)
+        phrase_env = math.sin(math.pi * progress)
+        value += amp * phrase_env * pulse * (
+            0.78 * sine(freq, t)
+            + 0.16 * sine(freq * 0.5, t)
+            + 0.06 * sine(freq * 1.5, t)
+        )
+
+    ocean = 0.025 * sine(0.19, t) + 0.018 * sine(0.31, t + 0.4)
+    return value + ocean
 
 
 def green_wind_chimes(t: float, _index: int, _total: int) -> float:
@@ -81,8 +102,34 @@ def green_wind_chimes(t: float, _index: int, _total: int) -> float:
     return value + wind
 
 
-def yellow_warm(t: float, _index: int, _total: int) -> float:
-    return 0.28 * sine(220.0, t) + 0.25 * sine(277.18, t) + 0.22 * sine(329.63, t)
+def yellow_owl(t: float, _index: int, _total: int) -> float:
+    calls = [
+        (0.25, 0.60),
+        (1.05, 0.72),
+        (2.70, 0.60),
+        (3.55, 0.72),
+        (5.40, 0.62),
+        (6.25, 0.78),
+    ]
+
+    value = 0.0
+    for start, length in calls:
+        elapsed = t - start
+        if elapsed < 0 or elapsed > length:
+            continue
+
+        progress = elapsed / length
+        hoot_env = math.sin(math.pi * progress)
+        bend = 1.0 - 0.13 * progress
+        base = 238.0 * bend
+        wobble = 1.0 + 0.018 * sine(5.0, elapsed)
+        value += 0.43 * hoot_env * (
+            0.72 * sine(base * wobble, t)
+            + 0.22 * sine(base * 0.5, t)
+            + 0.06 * sine(base * 1.5, t)
+        )
+
+    return value
 
 
 def pink_sparkle(t: float, _index: int, _total: int) -> float:
@@ -93,9 +140,9 @@ def pink_sparkle(t: float, _index: int, _total: int) -> float:
 
 
 def main() -> None:
-    write_wav("blue-chime.wav", 6.0, blue_chime)
+    write_wav("blue-whale.wav", 8.8, blue_whale)
     write_wav("green-wind-chimes.wav", 9.5, green_wind_chimes)
-    write_wav("yellow-warm.wav", 6.0, yellow_warm)
+    write_wav("yellow-owl.wav", 7.8, yellow_owl)
     write_wav("pink-sparkle.wav", 6.0, pink_sparkle)
 
 

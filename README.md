@@ -9,12 +9,13 @@ A small static GitHub Pages app built as an accessible cause-and-effect music in
 - `app.js` contains the obvious `SOUND_BUTTONS` configuration section for labels, colors, shapes, and audio filenames.
 - `manifest.webmanifest` asks supported installed web-app surfaces to keep the app portrait-oriented.
 - `favicon.svg` is a four-color app icon using the button colors.
+- `icons/` contains cartoon SVG icons for the four music buttons.
 - `audio/` contains original generated demo WAV files for public use.
 - `tools/generate_demo_audio.py` recreates the demo audio files.
 
 ## Changing Public Demo Sounds
 
-Replace files in `audio/`, then update the `file` values in `app.js`. Only put files in this public repository when you have the right to distribute them publicly.
+Replace files in `audio/`, then update the `file` values in `app.js`. Button icons can be changed with the `icon` values in the same configuration block. Only put files in this public repository when you have the right to distribute them publicly.
 
 ## Private Audio For The Purple Button
 

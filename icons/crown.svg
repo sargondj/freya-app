@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Crown">
+  <rect width="160" height="160" rx="32" fill="none"/>
+  <path d="M30 59l28 25 22-42 22 42 28-25-12 62H42z" fill="#ffd75a"/>
+  <path d="M42 121h76v18H42z" fill="#ffc93a"/>
+  <path d="M30 59l28 25 22-42 22 42 28-25-12 62H42z" fill="none" stroke="#fff6bd" stroke-width="8" stroke-linejoin="round"/>
+  <g fill="#fff7c8">
+    <circle cx="30" cy="59" r="8"/>
+    <circle cx="80" cy="42" r="9"/>
+    <circle cx="130" cy="59" r="8"/>
+  </g>
+  <g fill="#8f4fd1">
+    <circle cx="58" cy="105" r="7"/>
+    <circle cx="80" cy="93" r="8"/>
+    <circle cx="102" cy="105" r="7"/>
+  </g>
+  <path d="M50 132h60" stroke="#fff6bd" stroke-width="7" stroke-linecap="round"/>
+</svg>

@@ -9,37 +9,37 @@
 */
 const SOUND_BUTTONS = [
   {
-    id: "blue-circle",
-    label: "Blue music",
-    shape: "circle",
+    id: "blue-whale",
+    label: "Whale sound",
     color: "#1479d1",
-    file: "audio/blue-chime.wav",
+    file: "audio/blue-whale.wav",
+    icon: "icons/whale.svg",
   },
   {
-    id: "green-square",
-    label: "Green music",
-    shape: "square",
+    id: "green-wind-chimes",
+    label: "Wind chimes",
     color: "#148f5a",
     file: "audio/green-wind-chimes.wav",
+    icon: "icons/wind-chimes.svg",
   },
   {
-    id: "yellow-diamond",
-    label: "Yellow music",
-    shape: "diamond",
+    id: "yellow-owl",
+    label: "Owl hoot",
     color: "#e3aa17",
-    file: "audio/yellow-warm.wav",
+    file: "audio/yellow-owl.wav",
+    icon: "icons/owl.svg",
   },
   {
-    id: "purple-plus",
-    label: "Purple music",
-    shape: "plus",
+    id: "purple-crown",
+    label: "Purple crown music",
     color: "#8f4fd1",
     file: "audio/pink-sparkle.wav",
+    icon: "icons/crown.svg",
     localAudioSlot: true,
   },
 ];
 
-const LOCAL_AUDIO_BUTTON_ID = "purple-plus";
+const LOCAL_AUDIO_BUTTON_ID = "purple-crown";
 const LOCAL_AUDIO_DB = "freya-music-button-audio";
 const LOCAL_AUDIO_STORE = "private-audio";
 const LOCAL_AUDIO_KEY = "purple-button";
@@ -62,10 +62,11 @@ function buildButtons() {
   SOUND_BUTTONS.forEach((choice) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = `music-button shape-${choice.shape}`;
+    button.className = "music-button";
     button.dataset.soundId = choice.id;
     button.style.setProperty("--button-color", choice.color);
     button.setAttribute("aria-label", choice.label);
+    button.append(createButtonIcon(choice));
     prepareAudio(choice);
 
     button.addEventListener("pointerdown", (event) => {
@@ -92,6 +93,15 @@ function buildButtons() {
 
     buttonGrid.append(button);
   });
+}
+
+function createButtonIcon(choice) {
+  const icon = document.createElement("img");
+  icon.className = "button-icon";
+  icon.src = choice.icon;
+  icon.alt = "";
+  icon.draggable = false;
+  return icon;
 }
 
 function playChoice(choice, button) {

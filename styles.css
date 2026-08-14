@@ -69,37 +69,13 @@ button {
   transition: transform 80ms ease, box-shadow 80ms ease, filter 120ms ease;
 }
 
-.music-button::before {
-  content: "";
-  display: grid;
-  place-items: center;
-  width: min(28vw, 20vh, 168px);
-  aspect-ratio: 1;
-  border: clamp(6px, 1.6vw, 12px) solid rgba(255, 255, 255, 0.78);
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.shape-circle::before {
-  border-radius: 50%;
-}
-
-.shape-square::before {
-  border-radius: 8px;
-}
-
-.shape-diamond::before {
-  width: min(24vw, 17vh, 142px);
-  transform: rotate(45deg);
-  border-radius: 8px;
-}
-
-.shape-plus::before {
-  width: min(30vw, 22vh, 178px);
-  border: 0;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) center / 32% 100% no-repeat,
-    linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) center / 100% 32% no-repeat;
-  filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.12));
+.button-icon {
+  width: min(34vw, 24vh, 190px);
+  max-width: 78%;
+  max-height: 78%;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 5px 0 rgba(0, 0, 0, 0.12));
 }
 
 .music-button:active,
