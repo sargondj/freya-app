@@ -15,13 +15,12 @@ All app audio is served from this repository, without external players or ads.
 
 ## Whale
 
-- App file: `audio/blue-whale.wav` (4.2 seconds). The filename identifies the blue button; the animal is a **humpback whale**, not a blue whale.
-- Recording: **Humpback whale contact call (moo)**, National Park Service, Glacier Bay National Park and Preserve, September 2001.
-- Source: https://www.nps.gov/glba/learn/nature/soundclips.htm
-- Download: https://www.nps.gov/glba/learn/nature/upload/Humpback_whale_moo_etc_25Sep01-0840.mp3
-- Public-domain documentation: https://commons.wikimedia.org/wiki/File:Humpback_whale_moo.ogg
-- Status: U.S. public domain, work of a National Park Service employee in their official duties.
-- Edits: excerpt from 12.9 to 17.1 seconds; mono 44.1 kHz PCM WAV; 100 Hz high-pass and 1.8 kHz low-pass to reduce underwater rumble and hiss; brief fades; peak normalized to 70%. Natural contact calls retain their original pitch and speed.
+- App file: `audio/monterey-humpback-song.mp3` (24 seconds), for the blue button. The animal is a humpback whale.
+- Recording: **humpback whale song**, recorded December 7, 2015, by the Monterey Bay Aquarium Research Institute (MBARI) using its MARS hydrophone off the California coast.
+- Source and license: https://freesound.org/people/MBARI_MARS/sounds/448984/ (Creative Commons Attribution-NonCommercial 4.0: https://creativecommons.org/licenses/by-nc/4.0/).
+- Downloaded source: https://cdn.freesound.org/previews/448/448984_6181234-hq.mp3 (public high-quality MP3 preview).
+- Edited excerpt distributed under CC BY-NC 4.0. Edits: 4 to 28 seconds, mono, 44.1 kHz MP3, 75 Hz high-pass, 4 kHz low-pass, volume normalization, and brief fades. Natural song retains its original pitch and speed.
+- This recording is from the same organization and Monterey Bay hydrophone project as the [video requested by the caregiver](https://www.youtube.com/watch?v=5tRMqbPH_pk). It is a separately published recording; the video's exact audio was not extracted because its reuse license was not identified.
 
 ## Wind Chimes
 

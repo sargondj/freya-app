@@ -12,7 +12,7 @@ const SOUND_BUTTONS = [
     id: "blue-whale",
     label: "Whale sound",
     color: "#1479d1",
-    file: "audio/blue-whale.wav?v=natural-2",
+    file: "audio/monterey-humpback-song.mp3?v=mbari-1",
     icon: "icons/whale.svg?v=representational-2",
   },
   {
@@ -39,23 +39,20 @@ const SOUND_BUTTONS = [
   },
 ];
 
-const LOCAL_AUDIO_BUTTON_ID = "purple-crown";
 const LOCAL_AUDIO_DB = "freya-music-button-audio";
 const LOCAL_AUDIO_STORE = "private-audio";
-const LOCAL_AUDIO_KEY = "purple-button";
+const LOCAL_AUDIO_SLOTS = [
+  { id: "purple-crown", key: "purple-button", label: "Purple", fallback: "demo sound", inputId: "localAudioInput", clearId: "clearLocalAudio", statusId: "setupStatus" },
+  { id: "yellow-owl", key: "owl-button", label: "Owl", fallback: "public owl sound", inputId: "owlAudioInput", clearId: "clearOwlAudio", statusId: "owlSetupStatus" },
+];
 
 const buttonGrid = document.querySelector("#buttonGrid");
 const stopButton = document.querySelector("#stopButton");
 const setupPanel = document.querySelector("#setupPanel");
-const localAudioInput = document.querySelector("#localAudioInput");
-const clearLocalAudioButton = document.querySelector("#clearLocalAudio");
-const setupStatus = document.querySelector("#setupStatus");
-
 const audioById = new Map();
 let currentAudio = null;
 let currentButton = null;
-let localAudioObjectUrl = null;
-let localAudioName = "";
+const localAudioState = new Map();
 let orientationLockRequested = false;
 
 function buildButtons() {
@@ -178,29 +175,32 @@ function setupModeEnabled() {
 }
 
 async function loadLocalAudio() {
-  try {
-    const saved = await readLocalAudioRecord();
-    if (saved?.blob) {
-      useLocalAudioBlob(saved.blob, saved.name || "private audio file");
+  for (const slot of LOCAL_AUDIO_SLOTS) {
+    try {
+      const saved = await readLocalAudioRecord(slot.key);
+      if (saved?.blob) {
+        useLocalAudioBlob(slot, saved.blob, saved.name || "private audio file");
+      }
+    } catch (error) {
+      updateSetupStatus(slot, "Private audio could not be loaded on this device.");
     }
-  } catch (error) {
-    updateSetupStatus("Private audio could not be loaded on this device.");
   }
 }
 
-function useLocalAudioBlob(blob, name) {
-  if (localAudioObjectUrl) {
-    URL.revokeObjectURL(localAudioObjectUrl);
+function useLocalAudioBlob(slot, blob, name) {
+  const previous = localAudioState.get(slot.id);
+  if (previous?.objectUrl) {
+    URL.revokeObjectURL(previous.objectUrl);
   }
 
-  localAudioObjectUrl = URL.createObjectURL(blob);
-  localAudioName = name;
+  const objectUrl = URL.createObjectURL(blob);
+  localAudioState.set(slot.id, { objectUrl, name });
 
-  const audio = new Audio(localAudioObjectUrl);
+  const audio = new Audio(objectUrl);
   audio.preload = "auto";
-  audioById.set(LOCAL_AUDIO_BUTTON_ID, audio);
+  audioById.set(slot.id, audio);
 
-  updateSetupStatus(`Purple button is using private audio: ${localAudioName}`);
+  updateSetupStatus(slot, `${slot.label} button is using private audio: ${name}`);
 }
 
 function enableCaregiverSetup() {
@@ -209,40 +209,49 @@ function enableCaregiverSetup() {
   }
 
   setupPanel.hidden = false;
-  updateSetupStatus(localAudioName ? `Purple button is using private audio: ${localAudioName}` : "Purple button is using the demo sound.");
+  for (const slot of LOCAL_AUDIO_SLOTS) {
+    const name = localAudioState.get(slot.id)?.name;
+    updateSetupStatus(slot, name ? `${slot.label} button is using private audio: ${name}` : `${slot.label} button is using the ${slot.fallback}.`);
+  }
 }
 
-localAudioInput.addEventListener("change", async () => {
-  const file = localAudioInput.files && localAudioInput.files[0];
-  if (!file) {
-    return;
-  }
+for (const slot of LOCAL_AUDIO_SLOTS) {
+  const input = document.getElementById(slot.inputId);
+  const clearButton = document.getElementById(slot.clearId);
 
-  try {
-    await confirmPlayableAudio(file);
-    await saveLocalAudioRecord(file);
-    useLocalAudioBlob(file, file.name);
-  } catch (error) {
-    updateSetupStatus(error.message || "This browser could not save that audio file. Try a smaller MP3, M4A, AAC, or WAV file.");
-  }
-});
+  input.addEventListener("change", async () => {
+    const file = input.files?.[0];
+    if (!file) {
+      return;
+    }
 
-clearLocalAudioButton.addEventListener("click", async () => {
-  stopPlayback();
-  if (localAudioObjectUrl) {
-    URL.revokeObjectURL(localAudioObjectUrl);
-    localAudioObjectUrl = null;
-  }
+    try {
+      await confirmPlayableAudio(file);
+      await saveLocalAudioRecord(slot.key, file);
+      stopPlayback();
+      useLocalAudioBlob(slot, file, file.name);
+    } catch (error) {
+      updateSetupStatus(slot, error.message || "This browser could not save that audio file. Try a smaller MP3, M4A, AAC, or WAV file.");
+    }
+  });
 
-  try {
-    await deleteLocalAudioRecord();
-  } finally {
-    const purpleChoice = SOUND_BUTTONS.find((choice) => choice.id === LOCAL_AUDIO_BUTTON_ID);
-    prepareAudio(purpleChoice);
-    localAudioName = "";
-    updateSetupStatus("Purple button is using the demo sound.");
-  }
-});
+  clearButton.addEventListener("click", async () => {
+    try {
+      await deleteLocalAudioRecord(slot.key);
+      stopPlayback();
+      const previous = localAudioState.get(slot.id);
+      if (previous?.objectUrl) {
+        URL.revokeObjectURL(previous.objectUrl);
+      }
+      localAudioState.delete(slot.id);
+      prepareAudio(SOUND_BUTTONS.find((choice) => choice.id === slot.id));
+      input.value = "";
+      updateSetupStatus(slot, `${slot.label} button is using the ${slot.fallback}.`);
+    } catch (error) {
+      updateSetupStatus(slot, "Private audio could not be removed on this device.");
+    }
+  });
+}
 
 function confirmPlayableAudio(file) {
   return new Promise((resolve, reject) => {
@@ -263,10 +272,8 @@ function confirmPlayableAudio(file) {
   });
 }
 
-function updateSetupStatus(message) {
-  if (setupStatus) {
-    setupStatus.textContent = message;
-  }
+function updateSetupStatus(slot, message) {
+  document.getElementById(slot.statusId).textContent = message;
 }
 
 function openLocalAudioDb() {
@@ -281,12 +288,12 @@ function openLocalAudioDb() {
   });
 }
 
-async function readLocalAudioRecord() {
+async function readLocalAudioRecord(key) {
   const db = await openLocalAudioDb();
-  return runLocalAudioTransaction(db, "readonly", (store) => store.get(LOCAL_AUDIO_KEY));
+  return runLocalAudioTransaction(db, "readonly", (store) => store.get(key));
 }
 
-async function saveLocalAudioRecord(file) {
+async function saveLocalAudioRecord(key, file) {
   const db = await openLocalAudioDb();
   const record = {
     name: file.name,
@@ -295,12 +302,12 @@ async function saveLocalAudioRecord(file) {
     savedAt: new Date().toISOString(),
   };
 
-  return runLocalAudioTransaction(db, "readwrite", (store) => store.put(record, LOCAL_AUDIO_KEY));
+  return runLocalAudioTransaction(db, "readwrite", (store) => store.put(record, key));
 }
 
-async function deleteLocalAudioRecord() {
+async function deleteLocalAudioRecord(key) {
   const db = await openLocalAudioDb();
-  return runLocalAudioTransaction(db, "readwrite", (store) => store.delete(LOCAL_AUDIO_KEY));
+  return runLocalAudioTransaction(db, "readwrite", (store) => store.delete(key));
 }
 
 function runLocalAudioTransaction(db, mode, action) {
