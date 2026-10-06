@@ -140,9 +140,7 @@ def pink_sparkle(t: float, _index: int, _total: int) -> float:
 
 
 def main() -> None:
-    write_wav("blue-whale.wav", 8.8, blue_whale)
-    write_wav("green-wind-chimes.wav", 9.5, green_wind_chimes)
-    write_wav("yellow-owl.wav", 7.8, yellow_owl)
+    # Preserve the licensed field recordings; generate only the purple fallback.
     write_wav("pink-sparkle.wav", 6.0, pink_sparkle)
 
 

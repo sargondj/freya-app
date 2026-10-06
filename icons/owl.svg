@@ -1,15 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Owl">
-  <rect width="160" height="160" rx="32" fill="none"/>
-  <path d="M43 55c0-22 15-34 37-34s37 12 37 34v42c0 24-16 42-37 42S43 121 43 97z" fill="#7a4b2a"/>
-  <path d="M45 54L29 32l34 9zM115 54l16-22-34 9z" fill="#7a4b2a"/>
-  <path d="M55 95c0 24 11 36 25 36s25-12 25-36c-6 7-15 10-25 10s-19-3-25-10z" fill="#d99b55"/>
-  <circle cx="63" cy="67" r="24" fill="#f9e6b5"/>
-  <circle cx="97" cy="67" r="24" fill="#f9e6b5"/>
-  <circle cx="63" cy="69" r="10" fill="#201713"/>
-  <circle cx="97" cy="69" r="10" fill="#201713"/>
-  <circle cx="67" cy="65" r="3" fill="#fff"/>
-  <circle cx="101" cy="65" r="3" fill="#fff"/>
-  <path d="M80 80l-12 14h24z" fill="#f0b83f"/>
-  <path d="M57 123h46" stroke="#4a2e1e" stroke-width="7" stroke-linecap="round"/>
-  <path d="M65 139l-10 10M95 139l10 10" stroke="#f9e6b5" stroke-width="6" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <title>Great horned owl perched on a branch</title>
+  <g stroke="#302a23" stroke-width="3" stroke-linejoin="round">
+    <path d="M29 174h144" stroke="#563e2c" stroke-width="9" stroke-linecap="round"/>
+    <path d="M77 154l-5 24 28-10 28 10-5-24" fill="#795e43"/>
+    <path d="M58 69C39 95 44 151 70 167c16 10 44 10 60 0 26-16 31-72 12-98Z" fill="#957653"/>
+    <path d="M69 87c-22 17-20 51-8 69l15-14 5-45m50-10c22 17 20 51 8 69l-15-14-5-45" fill="#68503c"/>
+    <path d="M76 102c-9 16-11 43 1 57 12 9 34 9 46 0 12-14 10-41 1-57Z" fill="#e6d5af"/>
+    <path d="M52 26l26 15c14-4 30-4 44 0l26-15-5 35c6 19-9 45-43 48-34-3-49-29-43-48Z" fill="#795e43"/>
+    <path d="M61 48c13-8 28-7 39 4 11-11 26-12 39-4l-3 30c-5 13-23 19-36 8-13 11-31 5-36-8Z" fill="#ead8b8"/>
+    <path d="M62 48l32 12m44-12-32 12" stroke="#493b2d" stroke-width="5"/>
+    <circle cx="79" cy="68" r="11" fill="#dca329"/>
+    <circle cx="121" cy="68" r="11" fill="#dca329"/>
+    <circle cx="79" cy="68" r="5" fill="#171b19" stroke="none"/>
+    <circle cx="121" cy="68" r="5" fill="#171b19" stroke="none"/>
+    <path d="M94 81h12l-6 15Z" fill="#48433a"/>
+    <path d="M83 113h34m-37 13h40m-39 13h38m-33 13h28" stroke="#957653" stroke-width="3"/>
+    <path d="M73 163l-3 11m10-10v11m7-11 3 10m20-10-3 10m10-10v11m7-12 3 11" stroke="#bdad84" stroke-width="5" stroke-linecap="round"/>
+  </g>
 </svg>

@@ -1,14 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Whale">
-  <rect width="160" height="160" rx="32" fill="none"/>
-  <path d="M35 84c12-24 44-36 76-26 16 5 28 16 34 28-8 7-19 10-32 8-7 20-27 35-52 35-22 0-38-12-38-28 0-6 5-13 12-17z" fill="#bdefff"/>
-  <path d="M109 59c11-25 30-32 44-17-6 4-10 10-12 18 8-2 15-1 20 4-15 12-35 10-52-5z" fill="#bdefff"/>
-  <path d="M42 97c18 13 48 15 71-3-7 20-27 35-52 35-19 0-34-9-38-22 5-1 12-4 19-10z" fill="#7ed5ff"/>
-  <circle cx="66" cy="75" r="6" fill="#15364d"/>
-  <path d="M78 91c9 8 22 8 31 0" fill="none" stroke="#15364d" stroke-width="5" stroke-linecap="round"/>
-  <path d="M48 48c-4-8-3-17 3-26M65 43c-2-11 2-21 10-29M83 43c4-10 12-17 23-20" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
-  <g fill="#ffffff" opacity=".92">
-    <circle cx="48" cy="43" r="5"/>
-    <circle cx="65" cy="36" r="4"/>
-    <circle cx="86" cy="37" r="5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <title>Humpback whale with long flippers and broad tail flukes</title>
+  <g stroke="#183e4c" stroke-width="3" stroke-linejoin="round">
+    <path d="M24 80c23-19 55-20 83-8 17 7 28 18 41 18 6-10 8-20 7-31-13 0-20-7-23-16 17-4 27 2 32 11 8-6 18-6 27 0-4 13-13 18-25 16 1 22-8 44-30 52-29 12-83 11-107-5-16-10-18-26-5-37Z" fill="#487986"/>
+    <path d="M20 102c28 13 67 10 106 5 13-2 25-7 34-15-6 16-13 23-24 28-29 12-83 11-107-5-5-3-8-7-9-13Z" fill="#e1ece8" stroke="none"/>
+    <path d="M95 78l10-19 12 26" fill="#487986"/>
+    <path d="M73 103c4 20 19 42 35 47 4-13-4-34-18-46" fill="#c6ddd9"/>
+    <path d="M26 99c12 3 28 4 44 2" fill="none" stroke-width="2"/>
+    <path d="M32 109c9 7 22 10 35 10m-23-8c11 7 19 8 29 8m-17-9c8 5 14 7 21 7" fill="none" stroke="#7c9da4" stroke-width="2"/>
+    <circle cx="49" cy="91" r="3" fill="#142b35" stroke="none"/>
+    <path d="M28 82l6-2m7-3 5-1m9-3h5" stroke="#b2ced1" stroke-width="3" stroke-linecap="round"/>
   </g>
 </svg>

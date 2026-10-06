@@ -1,25 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Wind chimes">
-  <rect width="160" height="160" rx="32" fill="none"/>
-  <path d="M38 35c25-18 58-18 84 0" fill="none" stroke="#fff8db" stroke-width="12" stroke-linecap="round"/>
-  <path d="M48 40h64" stroke="#573a24" stroke-width="10" stroke-linecap="round"/>
-  <g stroke="#fff7ca" stroke-width="5" stroke-linecap="round">
-    <path d="M54 44v18"/>
-    <path d="M73 43v17"/>
-    <path d="M92 43v17"/>
-    <path d="M110 44v18"/>
-  </g>
-  <g>
-    <rect x="44" y="60" width="19" height="62" rx="9" fill="#f8f0be"/>
-    <rect x="63" y="58" width="20" height="76" rx="10" fill="#fff7d4"/>
-    <rect x="84" y="58" width="20" height="70" rx="10" fill="#f1e5a5"/>
-    <rect x="105" y="61" width="18" height="58" rx="9" fill="#fff3bf"/>
-  </g>
-  <circle cx="80" cy="128" r="9" fill="#fff8db"/>
-  <path d="M80 128c-16 0-28 7-34 18" fill="none" stroke="#fff8db" stroke-width="5" stroke-linecap="round"/>
-  <path d="M80 128c16 0 28 7 34 18" fill="none" stroke="#fff8db" stroke-width="5" stroke-linecap="round"/>
-  <g fill="#ffffff" opacity=".85">
-    <circle cx="34" cy="72" r="4"/>
-    <circle cx="128" cy="80" r="3"/>
-    <circle cx="122" cy="111" r="4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <title>Five metal wind chime tubes suspended around a wooden striker</title>
+  <g stroke="#263b36" stroke-width="3" stroke-linejoin="round">
+    <path d="M100 12v13M100 25 52 49m48-24 48 24" fill="none"/>
+    <path d="M48 49c0-7 23-13 52-13s52 6 52 13v8c0 7-23 13-52 13s-52-6-52-13Z" fill="#aa7748"/>
+    <ellipse cx="100" cy="49" rx="52" ry="13" fill="#dab47d"/>
+    <path d="M57 58v21m22-17v24m42-24v24m22-28v21M100 63v101" fill="none" stroke-width="2"/>
+    <ellipse cx="100" cy="121" rx="28" ry="7" fill="#b88b56"/>
+    <rect x="49" y="79" width="16" height="57" rx="2" fill="#b9d5dc"/>
+    <rect x="71" y="86" width="16" height="68" rx="2" fill="#e1ecee"/>
+    <rect x="113" y="86" width="16" height="68" rx="2" fill="#b9d5dc"/>
+    <rect x="135" y="79" width="16" height="57" rx="2" fill="#e1ecee"/>
+    <path d="M92 69h16v93H92Z" fill="#c8e0e5"/>
+    <path d="M54 85v43m22-36v54m21-70v78m21-62v54m22-61v43" stroke="#f5faf9" stroke-width="3"/>
+    <path d="M100 166c-6 4-15 7-15 14s8 13 15 15c7-2 15-8 15-15s-9-10-15-14Z" fill="#dab47d"/>
   </g>
 </svg>
